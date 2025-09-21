@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Price Predictor</title>
+</head>
+<body>
+    <h1>House Price Prediction</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>House Size (sq ft):</label>
+        <input type="number" name="size" required><br>
+        
+        <label>Number of Bedrooms:</label>
+        <input type="number" name="bedrooms" required><br>
+        
+        <label>House Age (years):</label>
+        <input type="number" name="age" required><br>
+        
+        <input type="submit" value="Predict Price">
+    </form>
+    
+    {% if prediction %}
+        <h2>Predicted Price: ${{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>
