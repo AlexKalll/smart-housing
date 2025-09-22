@@ -5,3 +5,5 @@ db.sqlite3
 venv/
 
 *.joblib
+
+*.csv
