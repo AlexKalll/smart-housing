@@ -1,7 +1,7 @@
 # House Price Predictor -- Django + Celery + Redis (Auto-Retraining)
 
 A Django app that predicts house prices and automatically retrains the model on fresh data. Retraining runs on a schedule (Celery Beat) and uses Redis as the broker/result backend.
-![Project Demo](assets/demo1.gif)
+![Project Demo](assets/demo.gif)
 ## Features
 - Input form at /pr/ endpoint to predict price using:
   - size, bedrooms, age (numeric)
