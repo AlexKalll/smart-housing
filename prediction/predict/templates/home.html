@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome | Smart-Housing{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="overlay"></div>
+    <div class="container hero-inner">
+        <img src="{% static 'logo.jpg' %}" alt="Logo" class="hero-logo">
+        <h1 class="hero-title">Predict House Prices with Confidence</h1>
+        <p class="hero-subtitle">Fast, accurate, and intuitive predictions powered by machine learning.</p>
+        <a href="/pr/" class="btn btn-primary">Get Started</a>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container grid-3">
+        <div class="card">
+            <h3>Accurate</h3>
+            <p>Leverages real data and robust models to estimate prices.</p>
+        </div>
+        <div class="card">
+            <h3>Simple</h3>
+            <p>Clean, friendly UI that works beautifully on any device.</p>
+        </div>
+        <div class="card">
+            <h3>Fast</h3>
+            <p>Get instant predictions with a single click.</p>
+        </div>
+    </div>
+    <div class="container cta">
+        <a href="/pr/" class="btn btn-secondary">Try the Predictor</a>
+    </div>
+    </section>
+{% endblock %}
+
+
