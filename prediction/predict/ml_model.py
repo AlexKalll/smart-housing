@@ -1,72 +1,110 @@
+from pathlib import Path
 import joblib
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split  
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
 
+root_dir = Path(__file__).resolve().parents[2]
+data_path = root_dir / "data" / "housing.csv"
+checkpoints_dir = root_dir / "checkpoints"
+scaler_dir = checkpoints_dir / "scaler.joblib"
+model_dir = checkpoints_dir / "model_latest.joblib"
+
 class HousePricePredictor:
-    def init(self):
-        # Simulate training a model (in real scenario, we have to use actual dataset)
+    LOCATIONS = ["Downtown", "Suburbs", "Rural"]
+    HOUSE_TYPES = ["Villa", "Apartment", "L-shape", "Normal"]
 
-        #Total rows: 1000
-        #Columns: 4 (size, bedrooms, age, price)
+    def __init__(self):
+        self.data_path = data_path
+        self.checkpoints_dir = checkpoints_dir
+        self.scaler_path = scaler_dir
+        self.model_path = model_dir
+        self.numeric_cols = ["size", "bedrooms", "age"]
+        self.expected_cat_cols = ( [f"location_{c}" for c in self.LOCATIONS] + [f"house_type_{c}" for c in self.HOUSE_TYPES])
 
-        np.random.seed(42)
-        self.data = pd.DataFrame({
-            'size': np.random.uniform(1000, 5000, 1000), # 1,2,3,4  Generates 1000 random float values 
-            'bedrooms': np.random.randint(1, 6, 1000),   # Generates 1000 random integer values
-            'age': np.random.uniform(0, 50, 1000),
-            'price': None
-        })
+    def load_dataset(self) -> pd.DataFrame:
+        if not self.data_path.exists():
+            raise FileNotFoundError(f"Dataset not found at {self.data_path}. Generate it with scripts/data_generator.py.")
         
-        # Create synthetic price based on features
-        self.data['price'] = (
-            self.data['size'] * 0.2 + 
-            self.data['bedrooms'] * 50000 - 
-            self.data['age'] * 1000 + 
-            np.random.normal(0, 50000, 1000)
-        )
-        
-        # Prepare the model
-        X = self.data[['size', 'bedrooms', 'age']]
-        y = self.data['price']
-        
-        # Split and scale data
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-        
+        df = pd.read_csv(self.data_path)
+        return df
+
+    def prepare_features(self, df: pd.DataFrame):
+        # Separate numeric + categorical
+        X_num = df[self.numeric_cols]
+        # One-hot encode categorical features
+        X_cat = pd.get_dummies(
+            df[["location", "house_type"]],
+            columns=["location", "house_type"], dtype=int)
+        y = df["price"].astype(float)
+        return X_num, X_cat, y
+
+    def train_and_save_model(self) -> None:
+        """Train model and save to checkpoints/"""
+        self.checkpoints_dir.mkdir(parents=True, exist_ok=True)
+
+        df = self.load_dataset()
+        X_num, X_cat, y = self.prepare_features(df)
+
+        train_idx, val_idx = train_test_split(df.index, test_size=0.2, random_state=42, shuffle=True)
+
+        X_num_tr, X_num_va = X_num.loc[train_idx], X_num.loc[val_idx]
+        X_cat_tr, X_cat_va = X_cat.loc[train_idx], X_cat.loc[val_idx]
+        y_tr, y_va = y.loc[train_idx], y.loc[val_idx]
+
+        # Scale numeric features 
         scaler = StandardScaler()
-        X_train_scaled = scaler.fit_transform(X_train)
-        
+        X_num_tr_scaled = scaler.fit_transform(X_num_tr)
+        X_num_va_scaled = scaler.transform(X_num_va)
+
+        # build final training matrices
+        X_tr = np.hstack([X_num_tr_scaled, X_cat_tr.values])
+        X_va = np.hstack([X_num_va_scaled, X_cat_va.values])
+
         # Train model
-        self.model = LinearRegression()
-        self.model.fit(X_train_scaled, y_train)
-        
-        # Save scaler and model
-        joblib.dump(scaler, 'scaler.joblib')
-        joblib.dump(self.model, 'ml_model.joblib')
+        model = LinearRegression()
+        model.fit(X_tr, y_tr)
 
-# Why is this important?
+        # Save artifacts
+        joblib.dump({"scaler": scaler, "expected_cat_cols": self.expected_cat_cols, "numeric_cols": self.numeric_cols }, self.scaler_path )
+        joblib.dump(model, self.model_path)
 
-# Ensures all features are on the same scale
-# Prevents features with larger magnitudes from dominating the machine learning model
-# Improves the performance and convergence of many machine learning algorithms
-    
+    def retrain_and_save_model(self) -> None:
+        self.train_and_save_model()
 
+    def predict_price( self, size: float, bedrooms: int, age: int, location: str, house_type: str,) -> float:
+        """Load model and predict price for new input"""
+        if not (self.scaler_path.exists() and self.model_path.exists()):
+            self.train_and_save_model()
 
-    def predict(self, size, bedrooms, age):
-        # Load saved model and scaler
-        scaler = joblib.load('scaler.joblib')
-        model = joblib.load('ml_model.joblib')
+        artifacts = joblib.load(self.scaler_path)
+        scaler: StandardScaler = artifacts["scaler"]
+        expected_cat_cols = artifacts["expected_cat_cols"]
+        numeric_cols = artifacts.get("numeric_cols", self.numeric_cols)
+        model: LinearRegression = joblib.load(self.model_path)
 
-        # insert our inpute to scaler then it will convert it and then insert the converted scaler format to prediction format
-        
-        # Prepare input
-        input_data = np.array([[size, bedrooms, age]])
-        input_scaled = scaler.transform(input_data)
-        
-        # Predict
-        prediction = model.predict(input_scaled)[0]
-        return round(prediction, 2)
-    
-HousePricePredictor().init()
+        # numeric input
+        X_num_row = pd.DataFrame([[float(size), int(bedrooms), int(age)]], columns=numeric_cols)
+
+        # categorical input
+        cat_dict = {col: 0 for col in expected_cat_cols}
+        cat_dict[f"location_{location}"] = 1
+        cat_dict[f"house_type_{house_type}"] = 1
+        X_cat_row = pd.DataFrame([cat_dict], columns=expected_cat_cols).astype(int)
+
+        X_num_scaled = scaler.transform(X_num_row)
+        X_all = np.hstack([X_num_scaled, X_cat_row.values])
+
+        pred = float(model.predict(X_all)[0])
+        return round(pred, 2)
+
+def train_and_save_model() -> None:
+    return HousePricePredictor().train_and_save_model()
+
+def retrain_and_save_model() -> None:
+    return HousePricePredictor().retrain_and_save_model()
+
+def predict_price(size: float, bedrooms: int, age: int, location: str, house_type: str) -> float:
+    return HousePricePredictor().predict_price(size, bedrooms, age, location, house_type)
