@@ -8,18 +8,37 @@
     <form method="post">
         {% csrf_token %}
         <label>House Size (sq ft):</label>
-        <input type="number" name="size" required><br>
+        <input type="number" name="size" value="{{ form.size }}" required><br>
         
         <label>Number of Bedrooms:</label>
-        <input type="number" name="bedrooms" required><br>
+        <input type="number" name="bedrooms" value="{{ form.bedrooms }}" required><br>
         
         <label>House Age (years):</label>
-        <input type="number" name="age" required><br>
+        <input type="number" name="age" value="{{ form.age }}" required><br>
+
+        <label>Location:</label>
+        <select name="location">
+            {% for opt in locations %}
+                <option value="{{ opt }}" {% if form.location == opt %}selected{% endif %}>{{ opt }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <label>House Type:</label>
+        <select name="house_type">
+            {% for opt in house_types %}
+                <option value="{{ opt }}" {% if form.house_type == opt %}selected{% endif %}>{{ opt }}</option>
+            {% endfor %}
+        </select>
+        <br>
         
         <input type="submit" value="Predict Price">
     </form>
     
-    {% if prediction %}
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    {% if prediction is not None %}
         <h2>Predicted Price: ${{ prediction }}</h2>
     {% endif %}
 </body>
