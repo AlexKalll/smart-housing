@@ -2,7 +2,11 @@ from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 from .ml_model import predict_price as predict_price_fn
 
+# Render the home page
+def home(request):
+	return render(request, "home.html")
 
+# Predict price view
 def predict_price(request):
 	prediction = None
 	error = None
