@@ -134,6 +134,10 @@ CHECKPOINTS_DIR.mkdir(exist_ok=True)
 # WhiteNoise configuration
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Fallback static file serving for production
+if not DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
