@@ -99,13 +99,13 @@ python manage.py runserver
 
 5. **Run Celery worker and Beat (separate terminals)**
 ```bash
-cd prediction
+cd prediction 
 celery -A prediction worker -l info
 celery -A prediction beat -l info
 ```
 
 6. **Access the application**
-- Main site: http://localhost:8000
+- Main site: http://localhost:8000  # and other sub-ruls
 - Admin panel: http://localhost:8000/admin
 
 ## Railway Deployment
