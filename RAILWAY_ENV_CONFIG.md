@@ -59,8 +59,10 @@ cd prediction && python manage.py deploy
 
 #### Start Command:
 ```
-gunicorn prediction.wsgi:application --bind 0.0.0.0:$PORT
+cd prediction && gunicorn prediction.wsgi:application --bind 0.0.0.0:$PORT
 ```
+
+**Note:** The `railway.json` file has been created to automatically configure these commands, so you may not need to set them manually.
 
 ### 4. Deploy Your Application
 1. Click **"Deploy"** button
