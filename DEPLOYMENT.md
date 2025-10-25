@@ -44,9 +44,9 @@ This guide provides step-by-step instructions for deploying the Smart-Housing Dj
 3. **Add the following environment variables:**
 
    ```
-   DJANGO_SECRET_KEY=django-insecure-your-unique-secret-key-here
+   DJANGO_SECRET_KEY=django-insecure-unique-secret-key-here
    DEBUG=0
-   ALLOWED_HOSTS=your-app-name.railway.app,localhost,127.0.0.1
+   ALLOWED_HOSTS=app-name.railway.app,localhost,127.0.0.1
    REDIS_URL=redis://localhost:6379/0
    ```
 
@@ -75,15 +75,15 @@ This guide provides step-by-step instructions for deploying the Smart-Housing Dj
 1. **Click "Deploy" in the Railway dashboard**
 2. **Wait for the build process to complete** (usually 2-5 minutes)
 3. **Monitor the deployment logs** for any errors
-4. **Your app will be available at:** `https://your-app-name.railway.app`
+4. **Your app will be available at:** `https://app-name.railway.app`
 
 ### Step 6: Verify Deployment
 
 1. **Visit your deployed URL**
 2. **Test the following pages:**
-   - Home page: `https://your-app-name.railway.app/`
-   - About page: `https://your-app-name.railway.app/about/`
-   - Contact page: `https://your-app-name.railway.app/contact/`
+   - Home page: `https://app-name.railway.app/`
+   - About page: `https://app-name.railway.app/about/`
+   - Contact page: `https://app-name.railway.app/contact/`
    - Prediction form: `https://smart-housing.up.railway.app/predict/`
 
 3. **Test the prediction functionality:**
@@ -139,7 +139,7 @@ If you want to enable background task processing:
 |----------|----------|-------------|---------|
 | `DJANGO_SECRET_KEY` | Yes | Django secret key for security | `django-insecure-...` |
 | `DEBUG` | Yes | Debug mode (0 for production) | `0` |
-| `ALLOWED_HOSTS` | Yes | Comma-separated allowed hosts | `your-app.railway.app,localhost` |
+| `ALLOWED_HOSTS` | Yes | Comma-separated allowed hosts | `app.railway.app,localhost` |
 | `REDIS_URL` | No | Redis connection URL (for Celery) | `redis://localhost:6379/0` |
 
 ## Post-Deployment Checklist

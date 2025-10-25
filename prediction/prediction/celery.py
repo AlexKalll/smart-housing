@@ -11,6 +11,6 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     "retrain-model-hourly": {
         "task": "predict.tasks.retrain_model",
-        "schedule": timedelta(hours=1),  # Every hour
+        "schedule": timedelta(hours=24),  # Every hour
     },
 }

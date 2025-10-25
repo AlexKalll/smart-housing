@@ -3,6 +3,7 @@
 A Django web application that predicts house prices using machine learning and automatically retrains models with fresh data. Features a responsive design, real-time predictions, and production-ready deployment configuration.
 
 ![Project Demo](assets/demo.gif)
+[The Web Application is also Available - Here](https://smart-housing.up.railway.app/)
 
 ## Features
 
@@ -57,7 +58,7 @@ smart-housing/
 
 ## Technology Stack
 
-- **Backend**: Django 5.2.6, Python 3.11
+- **Backend**: Django 5.2.6, Python >= 3.11
 - **Machine Learning**: Scikit-learn, Pandas, NumPy
 - **Task Queue**: Celery with Redis
 - **Frontend**: HTML5, CSS3, JavaScript
@@ -129,9 +130,9 @@ celery -A prediction beat -l info
 In Railway dashboard, go to your project → Variables tab, add:
 
 ```
-DJANGO_SECRET_KEY=your-secret-key-here
+DJANGO_SECRET_KEY=secret-key-here
 DEBUG=0
-ALLOWED_HOSTS=your-app-name.railway.app,localhost,127.0.0.1
+ALLOWED_HOSTS=app-name.railway.app,localhost,127.0.0.1
 REDIS_URL=redis://localhost:6379/0
 ```
 
@@ -150,7 +151,7 @@ In Railway dashboard → Settings → Deploy:
 #### 5. Deploy
 - Click "Deploy" in Railway dashboard
 - Wait for build to complete
-- Your app will be available at `https://your-app-name.railway.app`
+- Your app will be available at `https://app-name.railway.app`
 
 #### 6. Optional: Add Redis Service
 For production Celery functionality:
@@ -164,7 +165,7 @@ For production Celery functionality:
 |----------|-------------|---------|
 | `DJANGO_SECRET_KEY` | Django secret key for security | `django-insecure-...` |
 | `DEBUG` | Debug mode (0 for production) | `0` |
-| `ALLOWED_HOSTS` | Comma-separated allowed hosts | `your-app.railway.app,localhost` |
+| `ALLOWED_HOSTS` | Comma-separated allowed hosts | `app-name.railway.app,localhost` |
 | `REDIS_URL` | Redis connection URL | `redis://localhost:6379/0` |
 
 ## Production Features
@@ -185,19 +186,14 @@ For production Celery functionality:
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+1. Fork the repository or clone the repository.
+2. Create a feature branch (`git checkout -b feature/some-feature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/some-feature`)
 5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Support
 
 For support and questions:
 - Create an issue on GitHub
-- Contact us through the [Contact page](https://smart-housing.up.railway.app/contact/)
-- Email: support@smart-housing.com
+- Contact through the [Contact page](https://smart-housing.up.railway.app/contact/)  or Email at: findkal.here@gmail.com
