@@ -23,6 +23,8 @@
             <nav class="nav-links">
                 <a href="/" class="nav-link">Home</a>
                 <a href="/pr/" class="nav-link">Predict</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/contact/" class="nav-link">Contact</a>
             </nav>
             <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
                 <span></span><span></span><span></span>
@@ -36,7 +38,28 @@
 
     <footer class="footer">
         <div class="container">
-            <p>© {% now "Y" %} Smart-Housing. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Smart-Housing</h4>
+                    <p>AI-powered house price prediction platform</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="/">Home</a>
+                    <a href="/pr/">Predict</a>
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <p>Machine Learning</p>
+                    <p>Real-time Predictions</p>
+                    <p>Auto-retraining</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© {% now "Y" %} Smart-Housing. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 </body>

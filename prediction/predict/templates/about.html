@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About | Smart-Housing{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>About Smart-Housing</h1>
+        <p>Learn more about our AI-powered house price prediction platform</p>
+    </div>
+</section>
+
+<section class="container">
+    <div class="about-content">
+        <div class="about-section">
+            <h2>Our Mission</h2>
+            <p>Smart-Housing leverages cutting-edge machine learning technology to provide accurate, real-time house price predictions. Our platform helps homeowners, buyers, and real estate professionals make informed decisions with confidence.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>How It Works</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Data Analysis</h3>
+                    <p>Our system analyzes multiple factors including house size, bedrooms, age, location, and house type to generate accurate predictions.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Machine Learning</h3>
+                    <p>Advanced ML algorithms process historical data and market trends to predict property values with high accuracy.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Auto-Retraining</h3>
+                    <p>Our models automatically retrain every 24 hours using fresh data to ensure predictions remain current and accurate.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>Key Features</h2>
+            <ul class="feature-list">
+                <li><strong>Accurate Predictions:</strong> Leverages real market data and robust ML models</li>
+                <li><strong>User-Friendly Interface:</strong> Clean, intuitive design that works on any device</li>
+                <li><strong>Real-Time Processing:</strong> Get instant predictions with a single click</li>
+                <li><strong>Multiple Factors:</strong> Considers size, bedrooms, age, location, and house type</li>
+                <li><strong>Continuous Learning:</strong> Models improve automatically with new data</li>
+                <li><strong>Mobile Responsive:</strong> Optimized for desktop, tablet, and mobile devices</li>
+            </ul>
+        </div>
+
+        <div class="about-section">
+            <h2>Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h4>Backend</h4>
+                    <p>Django 5.2.6, Python</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Machine Learning</h4>
+                    <p>Scikit-learn, Pandas, NumPy</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Task Queue</h4>
+                    <p>Celery with Redis</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Frontend</h4>
+                    <p>HTML5, CSS3, JavaScript</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section demo-section">
+            <h2>See It In Action</h2>
+            <div class="demo-container">
+                <img src="{% static 'images/demo.gif' %}" alt="Smart-Housing Demo" class="demo-image">
+                <p class="demo-caption">Watch our platform in action - from input to prediction in seconds!</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

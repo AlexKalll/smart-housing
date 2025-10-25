@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact | Smart-Housing{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Get in touch with our team for questions, feedback, or support</p>
+    </div>
+</section>
+
+<section class="container">
+    <div class="contact-content">
+        <div class="contact-form-section">
+            <div class="card form-card">
+                <h2>Send us a Message</h2>
+                <form method="post" class="contact-form" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="form-field">
+                        <label for="name">Full Name</label>
+                        <input id="name" type="text" name="name" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="email">Email Address</label>
+                        <input id="email" type="email" name="email" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="business">Business Partnership</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-primary" type="submit">Send Message</button>
+                    </div>
+                </form>
+
+                {% if message_sent %}
+                <div class="alert alert-success" role="alert">
+                    <strong>Thank you!</strong> Your message has been sent successfully. We'll get back to you within 24 hours.
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="contact-info-section">
+            <div class="card">
+                <h2>Get in Touch</h2>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <h4>Email</h4>
+                        <p>support@smart-housing.com</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Response Time</h4>
+                        <p>We typically respond within 24 hours</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Support Hours</h4>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h4>How accurate are the predictions?</h4>
+                        <p>Our ML models achieve high accuracy by continuously learning from market data and retraining automatically.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What factors influence the predictions?</h4>
+                        <p>We consider house size, number of bedrooms, age, location, and house type to generate comprehensive predictions.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Is the service free?</h4>
+                        <p>Yes! Our basic prediction service is completely free to use.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -6,6 +6,23 @@ from .ml_model import predict_price as predict_price_fn
 def home(request):
 	return render(request, "home.html")
 
+# About page view
+def about(request):
+	return render(request, "about.html")
+
+# Contact page view
+def contact(request):
+	message_sent = False
+	
+	if request.method == "POST":
+		# Simulate form processing (fake submission)
+		message_sent = True
+	
+	context = {
+		"message_sent": message_sent,
+	}
+	return render(request, "contact.html", context)
+
 # Predict price view
 def predict_price(request):
 	prediction = None
