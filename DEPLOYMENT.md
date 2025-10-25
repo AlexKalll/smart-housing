@@ -84,7 +84,7 @@ This guide provides step-by-step instructions for deploying the Smart-Housing Dj
    - Home page: `https://your-app-name.railway.app/`
    - About page: `https://your-app-name.railway.app/about/`
    - Contact page: `https://your-app-name.railway.app/contact/`
-   - Prediction form: `https://your-app-name.railway.app/pr/`
+   - Prediction form: `https://smart-housing.up.railway.app/predict/`
 
 3. **Test the prediction functionality:**
    - Fill out the form with sample data

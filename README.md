@@ -68,7 +68,7 @@ smart-housing/
 
 1. **Clone the repository and set up environment**
 ```bash
-git clone <repository-url>
+git clone https://github.com/AlexKalll/smart-housing.git
 cd smart-housing
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
@@ -180,8 +180,8 @@ For production Celery functionality:
 - `GET /` - Home page
 - `GET /about/` - About page
 - `GET /contact/` - Contact page
-- `GET /pr/` - Prediction form
-- `POST /pr/` - Submit prediction request
+- `GET /predict/` - Prediction form
+- `POST /predict/` - Submit prediction request
 
 ## Contributing
 
@@ -199,5 +199,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For support and questions:
 - Create an issue on GitHub
-- Contact us through the [Contact page](https://your-app.railway.app/contact/)
+- Contact us through the [Contact page](https://smart-housing.up.railway.app/contact/)
 - Email: support@smart-housing.com

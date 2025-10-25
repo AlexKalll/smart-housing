@@ -25,7 +25,7 @@ smart-housing.railway.app,healthcheck.railway.app,*.up.railway.app,localhost,127
 
 After the fix, your app will work on:
 - **Primary**: https://web-production-fdc00.up.railway.app/
-- **Custom**: https://smart-housing.railway.app/ (if you set up custom domain)
+- **Custom**: https://smart-housing.up.railway.app/ (if you set up custom domain)
 
 ## 🔧 What the Fix Does
 
@@ -50,6 +50,6 @@ REDIS_URL=redis://localhost:6379/0
 - **Home**: https://web-production-fdc00.up.railway.app/
 - **About**: https://web-production-fdc00.up.railway.app/about/
 - **Contact**: https://web-production-fdc00.up.railway.app/contact/
-- **Predict**: https://web-production-fdc00.up.railway.app/pr/
+- **Predict**: https://smart-housing.up.railway.app/predict/
 
 Your Smart-Housing app will be fully functional! 🚀

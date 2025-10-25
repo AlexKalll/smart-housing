@@ -41,7 +41,7 @@ CELERY_RESULT_BACKEND=redis://localhost:6379/1
 
 #### Variable 3: ALLOWED_HOSTS
 - **Name**: `ALLOWED_HOSTS`
-- **Value**: `smart-housing.railway.app,healthcheck.railway.app,*.up.railway.app,localhost,127.0.0.1`
+- **Value**: `smart-housing.up.railway.app,healthcheck.railway.app,*.up.railway.app,localhost,127.0.0.1`
 
 #### Variable 4: REDIS_URL
 - **Name**: `REDIS_URL`
@@ -67,7 +67,7 @@ cd prediction && gunicorn prediction.wsgi:application --bind 0.0.0.0:$PORT
 ### 4. Deploy Your Application
 1. Click **"Deploy"** button
 2. Wait for build to complete (2-5 minutes)
-3. Your app will be live at: **https://smart-housing.railway.app**
+3. Your app will be live at: **https://smart-housing.up.railway.app**
 
 ## 🔧 What Each Variable Does
 
@@ -84,7 +84,7 @@ After deployment, test these URLs:
 - **Home**: https://smart-housing.railway.app/
 - **About**: https://smart-housing.railway.app/about/
 - **Contact**: https://smart-housing.railway.app/contact/
-- **Predict**: https://smart-housing.railway.app/pr/
+- **Predict**: https://smart-housing.up.railway.app/predict/
 
 ## 🔍 Troubleshooting
 
