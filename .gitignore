@@ -7,3 +7,5 @@ venv/
 *.joblib
 
 *.csv
+
+celerybeat-schedule
