@@ -86,9 +86,9 @@ cd prediction && gunicorn prediction.wsgi:application --bind 0.0.0.0:$PORT
 ## 🚀 Post-Deployment Verification
 
 After deployment, test these URLs:
-- **Home**: https://smart-housing.railway.app/
-- **About**: https://smart-housing.railway.app/about/
-- **Contact**: https://smart-housing.railway.app/contact/
+- **Home**: https://smart-housing.up.railway.app/
+- **About**: https://smart-housing.up.railway.app/about/
+- **Contact**: https://smart-housing.up.railway.app/contact/
 - **Predict**: https://smart-housing.up.railway.app/predict/
 
 ## 🔍 Troubleshooting
@@ -99,7 +99,7 @@ After deployment, test these URLs:
 3. Ensure build command includes `cd prediction &&`
 
 ### If app doesn't load:
-1. Verify `ALLOWED_HOSTS` includes `smart-housing.railway.app`
+1. Verify `ALLOWED_HOSTS` includes `smart-housing.up.railway.app`
 2. Check that `DEBUG=0` (not `False` or `false`)
 3. Ensure `DJANGO_SECRET_KEY` is properly set
 
@@ -112,7 +112,7 @@ After deployment, test these URLs:
 
 With these settings, your app will have:
 - ✅ **Secure Production Mode**: DEBUG=0, secure secret key
-- ✅ **Custom Domain**: smart-housing.railway.app
+- ✅ **Custom Domain**: smart-housing.up.railway.app
 - ✅ **ML Predictions**: Pre-trained models ready
 - ✅ **Auto-Retraining**: Celery background tasks
 - ✅ **Static Files**: Optimized CSS, JS, images
