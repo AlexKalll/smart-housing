@@ -8,8 +8,9 @@
 ```
 DJANGO_SECRET_KEY=a-#gqkp7ug+hs7ma05-n!ser_p*m@)lq4c!rtn&)q_9%0xwu4-
 DEBUG=0
-ALLOWED_HOSTS=smart-housing.railway.app,healthcheck.railway.app,*.up.railway.app,localhost,127.0.0.1
+ALLOWED_HOSTS=smart-housing.up.railway.app,healthcheck.railway.app,*.up.railway.app,localhost,127.0.0.1
 REDIS_URL=redis://localhost:6379/0
+CSRF_TRUSTED_ORIGINS=https://smart-housing.up.railway.app,https://*.up.railway.app
 ```
 
 ### Optional Variables (for enhanced functionality):
@@ -46,6 +47,10 @@ CELERY_RESULT_BACKEND=redis://localhost:6379/1
 #### Variable 4: REDIS_URL
 - **Name**: `REDIS_URL`
 - **Value**: `redis://localhost:6379/0`
+
+#### Variable 5: CSRF_TRUSTED_ORIGINS
+- **Name**: `CSRF_TRUSTED_ORIGINS`
+- **Value**: `https://smart-housing.up.railway.app,https://*.up.railway.app`
 
 ### 3. Configure Build Commands
 1. Go to **"Settings"** tab
